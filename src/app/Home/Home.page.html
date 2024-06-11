@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon aria-hidden="true" name="home"></ion-icon>
+      Home
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <img src="assets/icon/delivery.png" width="50" height="50">
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Home</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Restaurants near you.</ion-card-title>
+      <ion-card-subtitle>Order form your favourite resaurant now!</ion-card-subtitle>
+      <br>
+      <img alt="wallimg" src="assets/wallimage.jpg" width="50%" />
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-list *ngFor="let resaurant of mydataSource">
+          <ion-item style="cursor: pointer; padding-top: 5px; padding-bottom: 5px;">
+            <ion-thumbnail slot="start">
+              <img alt="img" src="{{resaurant.image}}" width="100%"/>
+            </ion-thumbnail>
+            <ion-label (click)="addCart(resaurant)" class="glow-on-hover" style="padding:5px 5px 0px 5px;">
+              <h4><b>{{resaurant.name}}</b></h4>
+              <ion-text color="medium">
+                <p class="pStyle">{{resaurant.dishType}}</p>
+              </ion-text>
+              <span>
+                4.5 <ion-icon name="star"></ion-icon> {{resaurant.prepTime}} R{{resaurant.Price.toFixed(2)}}
+              </span>
+              <ion-text color="medium">
+                <p class="pStyle" style="color:rgb(255, 69, 69);">{{resaurant.distance}} away</p>
+              </ion-text>
+            </ion-label>
+          </ion-item>          
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

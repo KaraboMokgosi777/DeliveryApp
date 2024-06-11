@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon aria-hidden="true" name="cart"></ion-icon>
+      Cart
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <img src="assets/icon/delivery.png" width="50" height="50">
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Cart</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-list lines="none" *ngFor="let cartItem of cart">
+    <ion-item>
+      &nbsp;<img src="{{cartItem.image}}" alt="{{cartItem.name}}" width="80px">
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-icon name="list-outline"></ion-icon>&nbsp;
+      <ion-input label="Driver instruction." label-placement="floating" fill="solid" placeholder="Enter text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-text style="color: rgb(173, 20, 109); font-weight: bold;">Billing Info:</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Item Total</ion-label><ion-label slot="end">R{{cartItem.Price.toFixed(2)}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Delivery Fee</ion-label><ion-label slot="end">R{{cartItem.DeliveryFee.toFixed(2)}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total Due</ion-label><ion-label slot="end" style="font-weight: bold;">R{{cartItem.Price +
+        cartItem.DeliveryFee}}0</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-button (click)="removeOrder()">Empty cart</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-item class="floating-item " lines="none">
+    <ion-icon name="Home" slot="start"></ion-icon>
+    <ion-label>
+      Deliver to office
+      <p>University of pretoria</p>
+    </ion-label>
+    <ion-label slot="end">
+      <a href="#" style="color:rgb(173, 20, 20); font-weight: bold; text-decoration: none;">HOME</a>
+    </ion-label>
+  </ion-item>
+  <ion-item class="floating-item-low " *ngFor="let cartItem of cart">
+    <b>R{{cartItem.Price +cartItem.DeliveryFee}}</b>
+    <ion-label slot="end">
+      <p (click)="makepayment(cartItem)" href="#!" style="color:rgb(173, 20, 20); text-decoration: none; cursor: pointer;">MAKE PAYMENT
+      </p>
+    </ion-label>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <img src="assets/icon/delivery.png" width="50" height="50">
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar (ionChange)="searchItems($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Search</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item *ngFor="let resaurant of mydataSource ">
+      <ion-thumbnail slot="start">
+        <img alt="img" src="{{resaurant.image}}" />
+      </ion-thumbnail>
+      <ion-label  class="glow-on-hover" (click)="addCart(resaurant)">
+        <h4><b>{{resaurant.name}}</b></h4>
+        <ion-text color="medium">
+          <p class="pStyle">{{resaurant.dishType}}</p>
+        </ion-text>
+        <span>
+          4.5 <ion-icon name="star"></ion-icon> {{resaurant.prepTime}} R{{resaurant.Price.toFixed(2)}}
+        </span>
+        <ion-text color="medium">
+          <p class="pStyle" style="color:rgb(255, 69, 69);">3.5 km away</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
